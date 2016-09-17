@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>状态模式</title>
+	<script type="text/javascript">
+		var ResultState = function(){
+			var States = {
+				state0:function(){
+					console.log('处理状态为零的情况');
+				},
+				state1:function(){
+					console.log('处理状态为1的情况');
+				},
+				state2:function(){
+					console.log('处理状态为2的情况');
+				},
+				state3:function(){
+					console.log('处理状态为3的情况');
+				},
+				state4:function(){
+					console.log('处理状态为4的情况');
+				}
+			}
+
+			function show(result){
+				States['state' + result] && States['state'+ result]();
+			}
+
+			return {
+				show:show
+			}
+		}();
+
+		console.log(ResultState.show(3));
+		console.log(ResultState.show(4));
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

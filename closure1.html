@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>利用闭包创建绑定代理</title>
+	
+</head>
+<body>
+<div id="carKey">启动Tesla</div>
+</body>
+<script type="text/javascript">
+		var car,proxy,tesla;
+		Car = function(){
+			this.start = function(){
+				return console.log("car started");
+			};
+			this.turnKey = function(){
+				var carKey;
+				carKey = document.getElementById('carKey');
+				carKey.onclick = proxy(function(event){
+					this.start();
+				},this);
+			};
+
+			proxy = function(callback,self){
+				return function(){
+					return callback.apply(self,arguments);
+				};
+			};
+
+		}
+
+		tesla = new Car();
+		tesla.turnKey();
+	</script>
+</html>

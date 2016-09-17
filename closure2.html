@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>利用闭包实现单例模式</title>
+	
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	var SecretStore = (function(){
+		var data,secret,newSecret;
+		data = 'secret';
+		secret = function(){
+			return data;
+		}
+
+		newSecret = function(newValue){
+			data = newValue;
+			return secret();
+		}
+
+		return {
+			getSecret:secret,
+			setSecret:newSecret
+		};
+	})();
+	var secret = SecretStore;
+	console.log(secret.getSecret());
+	secret.setSecret('foo');
+	console.log(secret.getSecret());
+	var secret2 = SecretStore;
+	console.log(secret2.getSecret());
+	console.log(''+ new Date());
+</script>
+</html>

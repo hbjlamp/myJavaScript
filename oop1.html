@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>oop 继承</title>
+	<script type="text/javascript">
+		function SuperClass(){
+			this.superValue = true;
+		}
+		SuperClass.prototype.getSuperValue = function(){
+			return this.superValue;
+		}
+
+		function SubClass(){
+			this.subValue = false;
+		}
+		SubClass.prototype = new SuperClass();
+		SubClass.prototype.getSubValue = function(){
+			return this.subValue; 
+		}
+
+		var instance = new SubClass();
+		console.log(instance.getSuperValue());
+		console.log(instance.getSubValue());
+
+		console.log(instance instanceof SuperClass);
+		console.log(instance instanceof SubClass);
+		console.log(SubClass instanceof SuperClass);
+		console.log(SubClass.prototype instanceof SuperClass);
+		console.log(SubClass.prototype instanceof Object);
+
+		
+
+		// var Book = function(title,time,type){
+		// 	if(this instanceof Book){
+		// 		this.title = title;
+		// 		this.time = time;
+		// 		this.type = type;
+		// 	}else{
+		// 		return new Book(title, time, type);
+		// 	}
+		// }
+
+		// var book = new Book('JavaScript','2016-9-17','js');
+		// console.log(book);
+		// console.log(book.title);
+		// console.log(book.time+"\n");
+		// console.log(book.type)
+	</script>
+</head>
+<body>
+
+</body>
+</html>

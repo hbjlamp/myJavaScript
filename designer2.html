@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>策略模式之表单验证</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var FormValidate = function(){
+			var customform = {
+				notNull:function(value){
+					return /\s+/.test(value) ? '' : '请输入内容';
+				},
+				number:function(value){
+					return /^[0-9]+(\.[0-9]+)?$/.test(value) ? '' : '请输入数字';
+				},
+				phone:function(value){
+					return /^\d{3}\-\d{8}$|^\d{4}\-\d{7}$/.test(value) ? '' : '请输入正确的电话号码格式';
+				}
+			}
+
+			return {
+				check:function(type,value){
+					value = value.replace(/^\s+|\s$/g,'');
+					return customform[type] ? customform[type](value) : '没有该类型的验证方法';
+				},
+				addValidate:function(type,fn){
+					customform[type] = fn;
+				}
+			}
+		}();
+
+		var chkResult = FormValidate.check("notNull","");
+		console.log(chkResult);
+	</script>
+
+</body>
+</html>  
