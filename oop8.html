@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>多继承</title>
+	<script type="text/javascript">
+		// 浅拷贝
+		var extend = function(target,source){
+			for(var property in source){
+				target[property] = source[property];
+			}
+			return target;
+		}
+
+		var book = {
+			name:'javascript 设计模式',
+			alike:['css','html','javascript']
+		}
+
+		var anohterBook = {
+			color:'blue'
+		}
+
+		extend(anohterBook,book);
+		console.log(anohterBook.name);
+		console.log(anohterBook.alike);
+
+		anohterBook.alike.push('ajax');
+		anohterBook.name = '设计模式';
+
+		console.log(anohterBook.name);
+		console.log(anohterBook.alike);
+
+		console.log(book.name);
+		console.log(book.alike);
+
+		// 多继承
+		var mix = function(){
+			var i=1,
+				len = arguments.length,
+				target = arguments[0],
+				arg;
+			for(;i<len;i++){
+				arg = arguments[i];
+				for(var property in arg){
+					target[property] = arg[property];
+				}
+			}
+
+			return target;
+		}
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
